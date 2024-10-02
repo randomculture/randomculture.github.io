@@ -8,43 +8,86 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="https://github.com/randomculture/randomculture.github.io/blob/main/images/randomculture.png?raw=true" alt="RandomCulture Logo">
-        </div>
         <h1>RandomCulture</h1>
         <nav>
             <ul>
-                <li><a href="#tourism">Tourism Culture</a></li>
-                <li><a href="#facts">Interesting Facts</a></li>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About Us</a></li>
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#posts">Posts</a></li>
+                <li><a href="#random-facts">Random Facts</a></li>
             </ul>
         </nav>
+        <div class="logo">
+            <img src="https://github.com/randomculture/randomculture.github.io/blob/main/images/randomculture.png?raw=true" alt="RandomCulture Logo">
+        </div>
     </header>
 
     <main>
-        <section id="tourism">
-            <h2>Tourism Culture</h2>
+        <section id="home">
+            <h2>Welcome to RandomCulture</h2>
             <p>Explore the rich tapestry of cultures around the world through tourism. Discover how travel shapes our understanding of different societies and traditions.</p>
-        </section>
-
-        <section id="facts">
-            <h2>Interesting Random Facts</h2>
-            <ul>
-                <li>Did you know that the Eiffel Tower can be 15 cm taller during the summer due to thermal expansion?</li>
-                <li>In Japan, there are more pets than children.</li>
-                <li>The world's largest desert is Antarctica.</li>
-                <li>Venice is made up of 118 islands connected by over 400 bridges.</li>
-            </ul>
         </section>
 
         <section id="about">
             <h2>About Us</h2>
             <p>RandomCulture is dedicated to exploring the diverse cultures of the world through tourism and sharing interesting facts that inspire curiosity and appreciation for our planet.</p>
         </section>
+
+        <section id="privacy">
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. We are committed to protecting your personal information and your right to privacy.</p>
+        </section>
+
+        <section id="videos">
+            <h2>Videos</h2>
+            <p>Check out our collection of videos showcasing various cultures and travel experiences from around the world.</p>
+        </section>
+
+        <section id="posts">
+            <h2>Posts</h2>
+            <article>
+                <h3>Exploring the Markets of Marrakech</h3>
+                <p><em>Published on October 1, 2023</em></p>
+                <p>Marrakech is known for its vibrant markets, where you can find everything from spices to handmade crafts. Discover the rich culture and history behind these bustling bazaars.</p>
+                <a href="#">Read more...</a>
+            </article>
+            <article>
+                <h3>The Serene Temples of Kyoto</h3>
+                <p><em>Published on September 25, 2023</em></p>
+                <p>Kyoto is home to some of the most beautiful temples in Japan. Explore the tranquility and architectural beauty of these historic sites.</p>
+                <a href="#">Read more...</a>
+            </article>
+            <article>
+                <h3>Random Facts About Travel</h3>
+                <p><em>Published on September 20, 2023</em></p>
+                <p>Did you know that the world's largest desert is Antarctica? Learn more interesting facts about travel and culture in this post.</p>
+                <a href="#">Read more...</a>
+            </article>
+        </section>
+
+        <section id="random-facts">
+            <h2>Random Facts</h2>
+            <p id="fact-display">Click the button to see a random fact!</p>
+            <button id="new-fact-button">Get Random Fact</button>
+        </section>
     </main>
 
     <footer>
         <p>&copy; 2023 RandomCulture. All rights reserved.</p>
     </footer>
-</body>
-</html>
+
+    <script>
+        const facts = [
+            "Did you know that honey never spoils? Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3000 years old and still perfectly edible.",
+            "Bananas are berries, but strawberries are not.",
+            "A group of flamingos is called a 'flamboyance.'",
+            "Octopuses have three hearts and blue blood.",
+            "The Eiffel Tower can be 15 cm taller during the summer due to thermal expansion.",
+            "In Japan, there are more pets than children.",
+            "The world's largest desert is Antarctica.",
+            "Venice is made up of 118 islands connected by over 400 bridges."
+        ];
+
+        document.getElementBy
