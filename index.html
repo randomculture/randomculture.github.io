@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Randomculture</title>
     <link rel="stylesheet" href="styles.css">
+    <div id="menu"></div>
+<script>
+    fetch('menu.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading menu:', error));
+</script>
 </head>
 <body>
     <header>
