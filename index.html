@@ -6,20 +6,29 @@
     <title>Randomculture</title>
     <link rel="stylesheet" href="styles.css">
     <div id="menu"></div>
-<script>
-    fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('menu').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading menu:', error));
-</script>
+    <script>
+        fetch('menu.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading menu:', error));
+    </script>
 </head>
 <body>
     <header>
         <div class="logo">
             <img src="https://github.com/randomculture/randomculture.github.io/raw/main/images/randomculture-removebg-preview.png" alt="RandomCulture Logo">
         </div>
+        <div id="header"></div>
+        <script>
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+        </script>
     </header>
 
     <main>
@@ -28,37 +37,58 @@
             <p>Explore the rich tapestry of cultures around the world through tourism. Discover how travel shapes our understanding of different societies and traditions.</p>
         </section>
 
-<section id="about">
-    <h2>About Us</h2>
-    <p><a href="about.html">Learn more about us</a></p>
-</section>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>RandomCulture is dedicated to exploring the diverse cultures of the world through tourism and sharing interesting facts that inspire curiosity and appreciation for our planet.</p>
+            <p><a href="about.html">Learn more about us</a></p>
+        </section>
 
-<section id="posts">
-    <h2>Posts</h2>
-    <article>
-        <h3><a href="antarctic_desert.html">Exploring the Antarctic Desert</a></h3>
-        <p><em>Published on October 1, 2023</em></p>
-        <p>Marrakech is known for its vibrant markets, where you can find everything from spices to handmade crafts. Discover the rich culture and history behind these bustling bazaars.</p>
-        <a href="antarctic_desert.html">Read more...</a>
-    </article>
-    <!-- Add more articles similarly -->
-</section>
-<section id="privacy">
-    <h2>Privacy Policy</h2>
-    <p><a href="privacy.html">Read our privacy policy</a></p>
-</section>
+        <section id="privacy">
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. We are committed to protecting your personal information and your right to privacy.</p>
+            <p><a href="privacy.html">Read our privacy policy</a></p>
+        </section>
 
-<footer>
-    <div id="footer"></div>
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading footer:', error));
-    </script>
-</footer>
+        <section id="videos">
+            <h2>Videos</h2>
+            <p>Check out our collection of videos showcasing various cultures and travel experiences from around the world.</p>
+            <p><a href="videos.html">View our videos</a></p>
+        </section>
 
+        <section id="posts">
+            <h2>Posts</h2>
+            <article>
+                <h3><a href="antarctic_desert.html">Exploring the Antarctic Desert</a></h3>
+                <p><em>Published on October 1, 2023</em></p>
+                <p>Marrakech is known for its vibrant markets, where you can find everything from spices to handmade crafts. Discover the rich culture and history behind these bustling bazaars.</p>
+                <a href="antarctic_desert.html">Read more...</a>
+            </article>
+            <article>
+                <h3><a href="campo_de_sao_bento.html">The Serene Temples of Kyoto</a></h3>
+                <p><em>Published on September 25, 2023</em></p>
+                <p>Kyoto is home to some of the most beautiful temples in Japan. Explore the tranquility and architectural beauty of these historic sites.</p>
+                <a href="campo_de_sao_bento.html">Read more...</a>
+            </article>
+            <article>
+                <h3><a href="costao_de_itacoatiara.html">Random Facts About Travel</a></h3>
+                <p><em>Published on September 20, 2023</em></p>
+                <p>Did you know that the world's largest desert is Antarctica? Learn more interesting facts about travel and culture in this post.</p>
+                <a href="costao_de_itacoatiara.html">Read more...</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div id="footer"></div>
+        <script>
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+        </script>
+        <p>&copy; 2024 RandomCulture. All rights reserved.</p>
+    </footer>
 </body>
 </html>
