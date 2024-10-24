@@ -5,16 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Randomculture</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="loadContent.js" defer></script>
+</head>
+<body>
+    <!-- Load Header -->
+    <div id="header"></div>
     <script>
-        // Load the menu dynamically
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('menu.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('menu').innerHTML = data;
-                })
-                .catch(error => console.error('Error loading menu:', error));
-        });
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                return fetch('menu.html');
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header or menu:', error));
     </script>
 </head>
 <body>
