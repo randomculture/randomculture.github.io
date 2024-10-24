@@ -1,92 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="nytapp-vi-homepage" xmlns:og="http://opengraphprotocol.org/schema/">
 <head>
-        <script>
-        // Load header
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header').innerHTML = data;
-            });
-
-        // Load footer
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
-            });
-    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
     <title>RandomCulture - Explore Tourism Culture</title>
     <meta name="description" content="Discover tourism culture and interesting random facts from around the world." />
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Add your CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6; /* Improved readability */
-            background-color: #f4f4f4; /* Light background for better contrast */
-        }
-        header {
-            display: flex;
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center items horizontally */
-            padding: 10px 20px; /* Added horizontal padding */
-            background-color: #ffffff; /* White background for header */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-        }
-        .logo img {
-            width: 200px; /* Increase the size of the logo */
-            height: auto; /* Maintain aspect ratio */
-            margin-bottom: 10px; /* Space between logo and navigation */
-        }
-        nav {
-            margin-top: 10px; /* Space between logo and navigation */
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0; /* Remove default margin */
-            display: flex; /* Use flexbox for horizontal layout */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-            justify-content: center; /* Center the navigation items */
-        }
-        nav ul li {
-            margin: 0 10px; /* Space between menu items */
-        }
-        nav a {
-            text-decoration: none; /* Remove underline */
-            color: #333; /* Dark text color */
-            transition: color 0.3s; /* Smooth color transition */
-        }
-        nav a:hover {
-            color: #007BFF; /* Change color on hover */
-        }
-        main {
-            padding: 20px;
-            max-width: 800px; /* Limit width for better readability */
-            margin: auto; /* Center the main content */
-            background-color: #ffffff; /* White background for main content */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-        }
-        section {
-            margin-bottom: 20px; /* Space between sections */
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #f8f8f8;
-            position: relative; /* Ensure footer stays at the bottom */
-            bottom: 0;
-            width: 100%; /* Full width */
-        }
-        footer p {
-            margin: 0; /* Remove default margin */
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -140,13 +59,9 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 RandomCulture. All rights reserved.</p>
+        <p>&copy; 2024 RandomCulture. All rights reserved.</p>
     </footer>
-    <div id="header"></div>
-    <main>
-        <!-- Your page content here -->
-    </main>
-    <div id="footer"></div>
+
 
 
 </body>
