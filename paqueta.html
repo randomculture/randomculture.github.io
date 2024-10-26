@@ -20,7 +20,7 @@
     <title>Discover Paquetá: The Hidden Paradise in Guanabara Bay</title>
     <script src="menu.js"></script>
     <style>
-        
+            
         /* Add your CSS styles here */
         body {
             font-family: Arial, sans-serif;
@@ -101,21 +101,69 @@
             height: 100%;
             border: 0; /* Remove border */
         }
+        /* Add your CSS styles here */
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6; /* Improved readability */
+            background-color: #f4f4f4; /* Light background for better contrast */
         }
-        h1, h2, h3 {
-            color: #2c3e50;
+        header {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            padding: 10px 20px; /* Added horizontal padding */
+            background-color: #ffffff; /* White background for header */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
-        p {
-            color: #34495e;
+        .logo img {
+            width: 200px; /* Increase the size of the logo */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 10px; /* Space between logo and navigation */
         }
-        ul {
-            margin: 10px 0;
-            padding-left: 20px;
+        nav {
+            margin-top: 10px; /* Space between logo and navigation */
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0; /* Remove default margin */
+            display: flex; /* Use flexbox for horizontal layout */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center; /* Center the navigation items */
+        }
+        nav ul li {
+            margin: 0 10px; /* Space between menu items */
+        }
+        nav a {
+            text-decoration: none; /* Remove underline */
+            color: #333; /* Dark text color */
+            transition: color 0.3s; /* Smooth color transition */
+        }
+        nav a:hover {
+            color: #007BFF; /* Change color on hover */
+        }
+        main {
+            padding: 20px;
+            max-width: 800px; /* Limit width for better readability */
+            margin: auto; /* Center the main content */
+            background-color: #ffffff; /* White background for main content */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+        section {
+            margin-bottom: 20px; /* Space between sections */
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            position: relative; /* Ensure footer stays at the bottom */
+            bottom: 0;
+            width: 100%; /* Full width */
+        }
+        footer p {
+            margin: 0; /* Remove default margin */
         }
     </style>
 </head>
