@@ -101,8 +101,8 @@ h1 {
 }
 
 .video {
-    width: 100%; /* Garante que o vídeo ocupe 100% da largura */
-    height: 100%; /* Garante que o vídeo ocupe 100% da altura */
+    width: 200%; /* Garante que o vídeo ocupe 100% da largura */
+    height: 200%; /* Garante que o vídeo ocupe 100% da altura */
     display: none; /* Esconde todos os vídeos por padrão */
 }
 
