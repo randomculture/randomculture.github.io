@@ -1,5 +1,15 @@
 let currentSlide = 0;
 
+function showSlide(index) {
+    const slides = document.querySelectorAll('.video');
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active'); // Hide all slides
+        if (i === index) {
+            slide.classList.add('active'); // Show the current slide
+        }
+    });
+}
+
 function moveSlide(direction) {
     const slides = document.querySelectorAll('.video');
     const totalSlides = slides.length;
@@ -12,7 +22,8 @@ function moveSlide(direction) {
         currentSlide = 0; // Loop to first slide
     }
 
-    const carouselInner = document.querySelector('.carousel-inner');
-    const offset = -currentSlide * 100; // Move based on slide index
-    carouselInner.style.transform = `translateY(${offset}%)`;
+    showSlide(currentSlide);
 }
+
+// Initialize the first slide
+showSlide(currentSlide);
