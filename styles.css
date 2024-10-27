@@ -67,47 +67,66 @@
             gap: 10px;
             padding: 0 20px; /* Padding for the mosaic */
         }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
         h1 {
             text-align: center;
             margin: 20px 0;
         }
 
-        .mosaic {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 16px;
-            padding: 16px;
-        }
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
 
-        .video {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
+h1 {
+    text-align: center;
+}
 
-        .video iframe {
-            width: 100%;
-            height: 150px; /* Adjust height as needed */
-            border: none;
-        }
+.carousel {
+    position: relative;
+    width: 300px; /* Adjust width as needed */
+    height: 500px; /* Adjust height for vertical layout */
+    overflow: hidden;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
 
-        #header, #footer {
-            background-color: #fff;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+.carousel-inner {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s ease;
+}
 
-        #menu {
-            background-color: #f1f1f1;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-   
+.video {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
