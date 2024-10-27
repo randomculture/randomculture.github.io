@@ -1,43 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="nytapp-vi-homepage" xmlns:og="http://opengraphprotocol.org/schema/">
 <head>
-        <header>
-    <div class="logo">
-        <img src="https://github.com/randomculture/randomculture.github.io/raw/main/images/randomculture-removebg-preview.png" alt="RandomCulture Logo">
-    </div>
-    <nav>
-        <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="/posts.html">Posts</a></li>
-                <li><a href="/videos.html">Videos</a></li>
-                <li><a href="/about.html">About Us</a></li>
-                <li><a href="/privacy.html">Privacy</a></li
-                <li><a href="#random-facts">Random Facts</a></li>
-        </ul>
-    </nav>
-</header>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        p {
-            margin: 10px 0;
-        }
-    </style>
+    <title>Randomculture</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="loadContent.js" defer></script>
 </head>
 <body>
+    <!-- Load Header -->
+    <div id="header"></div>
+    <script>
+        // Load the header and menu
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                return fetch('menu.html');
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header or menu:', error));
+    </script>
 
-    <h1>Privacy Policy</h1>
+    <main>
+<h1>Privacy Policy</h1>
     <p>Last updated: 19/10/24</p>
 
     <h2>Introduction</h2>
@@ -89,9 +78,17 @@
         <li>Email: mobileculture@protonmail.com</li>
         <li>Website: <a href="https://randomculture.github.io">randomculture.github.io</a></li>
     </ul>
-    <footer>
-    <p>&copy; 2023 RandomCulture. All rights reserved.</p>
-</footer>
-</body>
+    </main>
 
+    <!-- Load Footer -->
+    <div id="footer"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+</body>
 </html>
