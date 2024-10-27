@@ -24,28 +24,31 @@
             })
             .catch(error => console.error('Error loading header or menu:', error));
     </script>
-    <main>
+<main>
         <h1>Short Videos Mosaic</h1>
-        <div class="mosaic">
-            <div class="video">
-                <iframe src="https://www.youtube.com/embed/Fz9cwnsWuCU" allowfullscreen title="Video 1"></iframe>
+        <div class="carousel">
+            <div class="carousel-inner">
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/Fz9cwnsWuCU" allowfullscreen title="Video 1"></iframe>
+                </div>
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/vUBB1OOeCZo" allowfullscreen title="Video 2"></iframe>
+                </div>
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/e0UZ-TWm1R0" allowfullscreen title="Video 3"></iframe>
+                </div>
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/0fwJWUVBAR4" allowfullscreen title="Video 4"></iframe>
+                </div>
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/OECBajQDdwI" allowfullscreen title="Video 5"></iframe>
+                </div>
+                <div class="video">
+                    <iframe src="https://www.youtube.com/embed/tBNsGyeKoN0" allowfullscreen title="Video 6"></iframe>
+                </div>
             </div>
-            <div class="video">
-                <iframe src="https://www.youtube.com/embed/vUBB1OOeCZo" allowfullscreen title="Video 2"></iframe>
-            </div>
-            <div class="video">
-                <iframe src="https://www.youtube.com/embed/e0UZ-TWm1R0" allowfullscreen title="Video 3"></iframe>
-            </div>
-            <div class="video">
-                <iframe src="https://www.youtube.com/embed/0fwJWUVBAR4" allowfullscreen title="Video 4"></iframe>
-            </div>
-            <div class="video">
-                <iframe src="https://www.youtube.com/embed/OECBajQDdwI" allowfullscreen title="Video 5"></iframe>
-            </div>
-            <div class="video">
-                <iframe src="https://www.youtube.com/embed/tBNsGyeKoN0" allowfullscreen title="Video 6"></iframe>
-            </div>
-            <!-- Add more video blocks as needed -->
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
         </div>
     </main>
     <!-- Load Footer -->
