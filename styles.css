@@ -90,6 +90,7 @@
     width: 100%; /* Garante que o vídeo ocupe 100% da largura */
     height: 100%; /* Garante que o vídeo ocupe 100% da altura */
     display: none; /* Esconde todos os vídeos por padrão */
+    border: width 708px
 }
 
 .video.active {
