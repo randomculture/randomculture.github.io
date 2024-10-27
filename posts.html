@@ -1,56 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="nytapp-vi-homepage" xmlns:og="http://opengraphprotocol.org/schema/">
 <head>
-    <header>
-    <div class="logo">
-        <img src="https://github.com/randomculture/randomculture.github.io/raw/main/images/randomculture-removebg-preview.png" alt="RandomCulture Logo">
-    </div>
-    <nav>
-        <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="/posts.html">Posts</a></li>
-                <li><a href="/videos.html">Videos</a></li>
-                <li><a href="/about.html">About Us</a></li>
-                <li><a href="/privacy.html">Privacy</a></li>
-                <li><a href="#random-facts">Random Facts</a></li>
-        </ul>
-    </nav>
-    </header>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Culture - Posts</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file if you have one -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        .post-preview {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .post-title {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .post-title:hover {
-            text-decoration: underline;
-        }
-        .post-excerpt {
-            color: #555;
-        }
-    </style>
+    <title>Randomculture</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="loadContent.js" defer></script>
 </head>
 <body>
+    <!-- Load Header -->
+    <div id="header"></div>
+    <script>
+        // Load the header and menu
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                return fetch('menu.html');
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('menu').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header or menu:', error));
+    </script>
 
+    <main>
     <h1>Blog Posts</h1>
 
     <div class="post-preview">
@@ -73,11 +48,17 @@
         <h2><a class="post-title" href="paqueta2.html">Paquetá: A Day in Paradise</a></h2>
         <p class="post-excerpt">Experience a perfect day on Paquetá Island, filled with stunning views, delicious food, and the warm hospitality of its residents.</p>
     </div>
-    <!-- You can add more post previews here in the same format -->
-    
-    <footer>
-    <p>&copy; 2024 RandomCulture. All rights reserved.</p>
-</footer>
+    </main>
 
+    <!-- Load Footer -->
+    <div id="footer"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
 </body>
 </html>
