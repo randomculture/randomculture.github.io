@@ -18,10 +18,44 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="application-name" content="Random Culture">
 <meta name="theme-color" content="#ffffff"> <!-- Cor da barra de status -->
-<!-- Sugerir que seja adicionado a tela inicial -->
+
+    <!-- Sugerir que seja adicionado a tela inicial -->
 <link rel="manifest" href="manifest.json">
+    <script>
+  let deferredPrompt;
 
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Impede que o mini-infobar apareça no navegador
+    e.preventDefault();
+    // Armazena o evento para que possamos usá-lo depois
+    deferredPrompt = e;
+    // Exibe um botão ou mensagem para o usuário
+    showAddToHomeScreen(); // Função que você deve definir para mostrar a mensagem
+  });
 
+  function showAddToHomeScreen() {
+    // Aqui você pode mostrar um botão ou uma mensagem ao usuário
+    const addBtn = document.createElement('button');
+    addBtn.innerText = 'Adicione à tela inicial';
+    document.body.appendChild(addBtn);
+
+    addBtn.addEventListener('click', () => {
+      // Esconde o botão
+      addBtn.style.display = 'none';
+      // Mostra o prompt de instalação
+      deferredPrompt.prompt();
+      // Espera pela resposta do usuário
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('Usuário aceitou o A2HS');
+        } else {
+          console.log('Usuário rejeitou o A2HS');
+        }
+        deferredPrompt = null;
+      });
+    });
+  }
+</script>
 </head>
 <body>
     <!-- Load Header -->
