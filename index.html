@@ -18,44 +18,40 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="application-name" content="Random Culture">
 <meta name="theme-color" content="#ffffff"> <!-- Cor da barra de status -->
+    
+    <h1>Minha Aplicação</h1>
+    <p>Esta é uma aplicação de exemplo para adicionar à tela inicial.</p>
 
-    <!-- Sugerir que seja adicionado a tela inicial -->
-<link rel="manifest" href="manifest.json">
     <script>
-  let deferredPrompt;
+        let deferredPrompt;
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    // Impede que o mini-infobar apareça no navegador
-    e.preventDefault();
-    // Armazena o evento para que possamos usá-lo depois
-    deferredPrompt = e;
-    // Exibe um botão ou mensagem para o usuário
-    showAddToHomeScreen(); // Função que você deve definir para mostrar a mensagem
-  });
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('Evento beforeinstallprompt disparado');
+            showAddToHomeScreen();
+        });
 
-  function showAddToHomeScreen() {
-    // Aqui você pode mostrar um botão ou uma mensagem ao usuário
-    const addBtn = document.createElement('button');
-    addBtn.innerText = 'Adicione à tela inicial';
-    document.body.appendChild(addBtn);
+        function showAddToHomeScreen() {
+            console.log('Mostrando botão Adicionar à Tela Inicial');
+            const addBtn = document.createElement('button');
+            addBtn.innerText = 'Adicione à tela inicial';
+            document.body.appendChild(addBtn);
 
-    addBtn.addEventListener('click', () => {
-      // Esconde o botão
-      addBtn.style.display = 'none';
-      // Mostra o prompt de instalação
-      deferredPrompt.prompt();
-      // Espera pela resposta do usuário
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('Usuário aceitou o A2HS');
-        } else {
-          console.log('Usuário rejeitou o A2HS');
+            addBtn.addEventListener('click', () => {
+                addBtn.style.display = 'none';
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Usuário aceitou o A2HS');
+                    } else {
+                        console.log('Usuário rejeitou o A2HS');
+                    }
+                    deferredPrompt = null;
+                });
+            });
         }
-        deferredPrompt = null;
-      });
-    });
-  }
-</script>
+    </script>
 </head>
 <body>
     <!-- Load Header -->
@@ -140,39 +136,6 @@
                 document.getElementById('footer').innerHTML = data;
             })
             .catch(error => console.error('Error loading footer:', error));
-    </script>
-        <h1>Minha Aplicação</h1>
-    <p>Esta é uma aplicação de exemplo para adicionar à tela inicial.</p>
-
-    <script>
-        let deferredPrompt;
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            console.log('Evento beforeinstallprompt disparado');
-            showAddToHomeScreen();
-        });
-
-        function showAddToHomeScreen() {
-            console.log('Mostrando botão Adicionar à Tela Inicial');
-            const addBtn = document.createElement('button');
-            addBtn.innerText = 'Adicione à tela inicial';
-            document.body.appendChild(addBtn);
-
-            addBtn.addEventListener('click', () => {
-                addBtn.style.display = 'none';
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('Usuário aceitou o A2HS');
-                    } else {
-                        console.log('Usuário rejeitou o A2HS');
-                    }
-                    deferredPrompt = null;
-                });
-            });
-        }
     </script>
 </body>
 </html>
