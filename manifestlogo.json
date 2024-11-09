@@ -1,0 +1,43 @@
+{
+  "short_name": "Águas e pulseiras",
+  "name": "Controle de águas e pulseiras",
+  "icons": [
+    {
+      "src": "logo.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.ico",
+      "sizes": "144x144",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.ico",
+      "sizes": "96x96",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.ico",
+      "sizes": "72x72",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "scope": "/",
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.example.randomculture"
+    }
+  ]
+}
