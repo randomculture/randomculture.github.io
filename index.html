@@ -108,5 +108,24 @@
             })
             .catch(error => console.error('Error loading footer:', error));
     </script>
+    <script>
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    const installButton = document.createElement('button');
+    installButton.textContent = 'Instalar aplicação';
+    installButton.addEventListener('click', () => {
+      event.prompt();
+      event.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('Usuário aceitou a instalação da aplicação');
+        } else {
+          console.log('Usuário recusou a instalação da aplicação');
+        }
+      });
+    });
+    document.body.appendChild(installButton);
+  });
+</script>
+
 </body>
 </html>
