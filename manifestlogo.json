@@ -28,7 +28,7 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ""https://randomculture.github.io/May.html"",
+  "start_url": ""/May.html"",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
