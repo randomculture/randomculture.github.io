@@ -117,7 +117,7 @@
     installButton.style.color = '#fff';
     installButton.style.padding = '10px 20px';
     installButton.style.border = 'none';
-    installButton.style.borderRadius = '5px';
+    installButton.style.borderRadius = '50px'; // torna o botão redondo
     installButton.style.cursor = 'pointer';
     installButton.style.display = 'flex';
     installButton.style.justifyContent = 'center';
@@ -125,6 +125,10 @@
     installButton.style.width = '100%';
     installButton.style.maxWidth = '200px';
     installButton.style.margin = '20px auto';
+    installButton.style.position = 'fixed'; // evita que o botão sobreponha texto
+    installButton.style.bottom = '20px'; // posiciona o botão na parte inferior da tela
+    installButton.style.left = '50%'; // centraliza o botão horizontalmente
+    installButton.style.transform = 'translateX(-50%)'; // ajusta a posição do botão
 
     installButton.addEventListener('click', () => {
       event.prompt();
@@ -139,6 +143,7 @@
     document.body.appendChild(installButton);
   });
 </script>
+
 
 
 </body>
