@@ -231,6 +231,54 @@
             document.body.appendChild(installButton);
         });
     </script>
+            <script>
+        // Registro do Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado com sucesso:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Falha ao registrar o Service Worker:', error);
+                    });
+            });
+        }
+
+        // Botão de instalação
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (event) => {
+            event.preventDefault();
+            deferredPrompt = event;
+            console.log('beforeinstallprompt event fired');
+
+            const installButton = document.createElement('button');
+            installButton.textContent = 'Adicionar';
+            installButton.style.background = '#4CAF50';
+            installButton.style.color = '#fff';
+            installButton.style.padding = '11px';
+            installButton.style.border = 'none';
+            installButton.style.borderRadius = '50%';
+            installButton.style.cursor = 'pointer';
+            installButton.style.position = 'fixed';
+            installButton.style.top = '10px';
+            installButton.style.left = '10px';
+            installButton.style.fontWeight = 'bold';
+            installButton.style.fontSize = '13.2px';
+
+            installButton.addEventListener('click', () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Usuário aceitou a instalação da aplicação');
+                    } else {
+                        console.log('Usuário recusou a instalação da aplicação');
+                    }
+                });
+            });
+            document.body.appendChild(installButton);
+        });
+    </script>
         
 </body>
 </html>
