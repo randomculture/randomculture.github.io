@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de pulseiras e águas</title>
-    <link rel="manifest" href="manifest.json"> <!-- Link para o manifesto -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,9 +14,9 @@
         h1, h2 {
             text-align: center;
         }
-        p {
-            text-align: center;
-        }
+        p{
+        text-align: center;
+         }
         .container {
             max-width: 400px;
             margin: auto;
@@ -85,6 +84,7 @@
 
         <button class="engradado-button" onclick="adicionarEngradado()"><strong>Engradado de Água</strong></button>
 
+        
         <h2>Resumo</h2>
         <pre id="resumo"></pre>
         <div class="message" id="message"></div>
@@ -95,18 +95,22 @@
         const cartelas = [];
         let totalEngradados = 0;
 
+        // Função para selecionar a cor
         function selectColor(cor) {
             const quantidade = 1;
+
             const cartelaExistente = cartelas.find(cartela => cartela.cor === cor);
             if (cartelaExistente) {
                 cartelaExistente.quantidade += quantidade;
             } else {
                 cartelas.push({ cor, quantidade });
             }
+
             document.getElementById('message').textContent = `Cartela ${cor} adicionada com sucesso!`;
             gerarResumo();
         }
 
+        // Função para gerar o resumo
         function gerarResumo() {
             let resumo = 'Pulseiras:\n';
             cartelas.forEach((cartela, index) => {
@@ -114,7 +118,7 @@
                 resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
             });
             resumo += `\nEngradados de água: ${totalEngradados} `;
-            resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
+                        resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
             resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
 
             const totalAguas = totalEngradados * 12;
@@ -123,18 +127,21 @@
             document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
         }
 
+        // Função para remover uma cartela
         function removerCartela(index) {
             cartelas.splice(index, 1); // Remove a cartela do array
             document.getElementById('message').textContent = 'Cartela removida com sucesso!';
             gerarResumo(); // Atualiza o resumo após a remoção
         }
 
+        // Função para adicionar engradado de águas
         function adicionarEngradado() {
             totalEngradados += 1; // Aumenta a quantidade de engradados
             document.getElementById('message').textContent = 'Engradado de água adicionado com sucesso!';
             gerarResumo(); // Atualiza o resumo para incluir o total de águas
         }
 
+        // Função para diminuir a quantidade de engradados
         function diminuirEngradado() {
             if (totalEngradados > 0) {
                 totalEngradados -= 1; // Diminui a quantidade de engradados
@@ -145,12 +152,14 @@
             gerarResumo(); // Atualiza o resumo
         }
 
+        // Função para remover todos os engradados
         function removerEngradado() {
             totalEngradados = 0; // Reseta a quantidade de engradados
             document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
             gerarResumo(); // Atualiza o resumo
         }
 
+        // Função para enviar o resumo via WhatsApp
         function enviarWhatsApp() {
             let mensagem = 'Resumo:\n';
             cartelas.forEach(cartela => {
@@ -167,42 +176,6 @@
             // Abre o WhatsApp com a mensagem
             window.open(urlWhatsApp, '_blank');
         }
-
-        // Script para gerenciar a instalação da PWA
-        window.addEventListener('beforeinstallprompt', (event) => {
-            event.preventDefault();
-            const installButton = document.createElement('button');
-            installButton.textContent = 'Adicionar';
-            installButton.style.background = '#4CAF50';
-            installButton.style.color = '#fff';
-            installButton.style.padding = '11px';
-            installButton.style.border = 'none';
-            installButton.style.borderRadius = '50%'; // torna o botão redondo
-            installButton.style.cursor = 'pointer';
-            installButton.style.display = 'flex';
-            installButton.style.justifyContent = 'center';
-            installButton.style.alignItems = 'center';
-            installButton.style.width = '55px'; // define o tamanho do botão
-            installButton.style.height = '55px'; // define o tamanho do botão
-            installButton.style.margin = '10px';
-            installButton.style.position = 'fixed'; // evita que o botão sobreponha texto
-            installButton.style.top = '10px'; // posiciona o botão no topo da tela
-            installButton.style.left = '10px'; // posiciona o botão no canto esquerdo da tela
-            installButton.style.fontWeight = 'bold'; // torna o texto em negrito
-            installButton.style.fontSize = '13.2px'; // ajusta o tamanho do texto
-
-            installButton.addEventListener('click', () => {
-                event.prompt();
-                event.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                                                console.log('Usuário aceitou a instalação da aplicação');
-                    } else {
-                        console.log('Usuário recusou a instalação da aplicação');
-                    }
-                });
-            });
-            document.body.appendChild(installButton);
-        });
     </script>
     <p>By Nellu</p>
 </body>
