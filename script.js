@@ -27,3 +27,15 @@ function moveSlide(direction) {
 
 // Initialize the first slide
 showSlide(currentSlide);
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.prompt();
+  event.userChoice.then((choiceResult) => {
+    if (choiceResult.outcome === 'accepted') {
+      console.log('Usuário aceitou a instalação da aplicação');
+    } else {
+      console.log('Usuário recusou a instalação da aplicação');
+    }
+  });
+});
+
