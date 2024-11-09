@@ -108,11 +108,24 @@
             })
             .catch(error => console.error('Error loading footer:', error));
     </script>
-    <script>
+<script>
   window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     const installButton = document.createElement('button');
-    installButton.textContent = 'Instalar aplicação';
+    installButton.textContent = 'Adicionar à tela inicial';
+    installButton.style.background = '#4CAF50';
+    installButton.style.color = '#fff';
+    installButton.style.padding = '10px 20px';
+    installButton.style.border = 'none';
+    installButton.style.borderRadius = '5px';
+    installButton.style.cursor = 'pointer';
+    installButton.style.display = 'flex';
+    installButton.style.justifyContent = 'center';
+    installButton.style.alignItems = 'center';
+    installButton.style.width = '100%';
+    installButton.style.maxWidth = '200px';
+    installButton.style.margin = '20px auto';
+
     installButton.addEventListener('click', () => {
       event.prompt();
       event.userChoice.then((choiceResult) => {
@@ -126,6 +139,7 @@
     document.body.appendChild(installButton);
   });
 </script>
+
 
 </body>
 </html>
