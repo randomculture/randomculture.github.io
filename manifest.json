@@ -1,9 +1,9 @@
 {
-  "short_name": "Nome do seu site",
+  "short_name": "Random Culture",
   "name": "Nome completo do seu site",
   "icons": [
     {
-      "src": "/randomculture.ico",
+      "src": "randomculture.ico",
       "sizes": "256x205",
       "type": "image/x-icon"
     }
