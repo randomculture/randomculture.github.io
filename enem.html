@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="nytapp-vi-homepage" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomculture</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="loadContent.js" defer></script>
+    <!-- Favicon para navegadores de desktop -->
+<link rel="icon" href="randomculture.ico" type="image/ico">
+
+<!-- Favicon para dispositivos móveis -->
+<link rel="apple-touch-icon" sizes="192x192" href="randomculture.ico">
+<link rel="icon" type="image/ico" sizes="192x192" href="randomculture.ico">
+<link rel="icon" type="image/ico" sizes="192x192" href="randomculture.ico">
+
+<!-- Configurações para dispositivos Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Random Culture">
+<meta name="theme-color" content="#ffffff"> <!-- Cor da barra de status -->
+</head>
+
+<body>
+
+    <h1>What is the ENEM? A Comparison with Similar Exams in Other Countries</h1>
+
+    <p>The National High School Exam (ENEM) is a standardized assessment conducted annually in Brazil, aimed at students who have completed or are completing high school. Established in 1998, the ENEM serves two primary purposes: to evaluate student performance and to facilitate access to higher education, as its scores are used by various universities for admission into undergraduate programs.</p>
+
+    <h2>Structure of the ENEM</h2>
+    <p>The ENEM consists of four objective tests and one essay. The tests cover the following areas of knowledge:</p>
+    <ol>
+        <li><strong>Languages, Codes, and Their Technologies</strong></li>
+        <li><strong>Human Sciences and Their Technologies</strong></li>
+        <li><strong>Natural Sciences and Their Technologies</strong></li>
+        <li><strong>Mathematics and Their Technologies</strong></li>
+    </ol>
+    <p>The essay, which is a critical component of the exam, requires students to develop a discursive-argumentative text on a current topic.</p>
+
+    <h2>Comparison with Similar Exams</h2>
+
+    <h3>1. SAT (United States)</h3>
+    <p>The SAT (Scholastic Assessment Test) is a standardized exam used for college admissions in the United States. Similar to the ENEM, the SAT assesses skills in mathematics, reading, and writing. However, the SAT primarily consists of multiple-choice questions and does not include a mandatory essay, although students can choose to take an optional writing section.</p>
+
+    <h3>2. ACT (United States)</h3>
+    <p>The ACT (American College Testing) is another standardized exam for college admissions in the United States. It evaluates skills in English, mathematics, reading, and science, with an optional writing section. Like the ENEM, it is used to assess college readiness.</p>
+
+    <h3>3. A-Levels (United Kingdom)</h3>
+    <p>A-Levels (Advanced Level) are exams taken in the United Kingdom, typically after two years of advanced study. Students select specific subjects to specialize in, and the grades obtained in A-Levels are crucial for admission to UK universities. Unlike the ENEM, which is a comprehensive single exam, A-Levels allow students to focus on areas of interest.</p>
+
+    <h3>4. Baccalauréat (France)</h3>
+    <p>The Baccalauréat, or Bac, is an exam that French students must pass to graduate from high school and gain access to higher education. The Bac is divided into several streams, allowing students to choose areas of focus, such as sciences, literature, or economics. Like the ENEM, the Bac includes an essay component but also covers a wide range of subjects.</p>
+
+    <h3>5. Abitur (Germany)</h3>
+    <p>The Abitur is the final examination in Germany that students must pass to qualify for university admission. It assesses knowledge in various subjects and is typically taken after 12 or 13 years of schooling, similar to the ENEM in its role as a gateway to higher education.</p>
+
+    <h3>6. Gaokao (China)</h3>
+    <p>The Gaokao, or National Higher Education Entrance Examination, is a highly competitive exam in China that assesses students' knowledge in subjects such as Chinese, mathematics, and a foreign language, along with other elective subjects. It is crucial for university admissions and is known for its rigorous nature.</p>
+
+    <h3>7. CSEC (Caribbean Secondary Education Certificate)</h3>
+    <p>The CSEC is an examination taken by students in the Caribbean at the end of secondary school. It assesses students in various subjects and is used for admission to higher education institutions in the region, similar to the ENEM's role in Brazil.</p>
+
+    <h3>8. ISC (Indian School Certificate)</h3>
+    <p>The ISC is an examination conducted in India for students completing their secondary education. It evaluates students in a range of subjects and is considered for admission to universities in India, paralleling the ENEM's function in Brazilian higher education.</p>
+
+    <h2>Conclusion</h2>
+    <p>The ENEM plays a vital role in the Brazilian educational system, providing a gateway to higher education. While there are similarities with exams in other countries, such as the assessment of skills and importance for university admission, each exam has its unique features and formats that reflect the educational needs and contexts of their respective nations. Understanding these differences is essential for appreciating the diversity of educational assessment systems worldwide.</p>
+    
+        <!-- Load Footer -->
+    <div id="footer"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    </script>
+</body>
+
+
+
