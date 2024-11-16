@@ -131,6 +131,7 @@ function gerarResumo() {
     let resumo = 'Pulseiras:\n';
     cartelas.forEach((cartela, index) => {
         resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
+        resumo += `<button class="decrease-button" onclick="diminuirCartela(${index})">Diminuir</button>\n`; // Botão para diminuir
         resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
     });
     
@@ -152,19 +153,63 @@ function gerarResumo() {
     document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
 }
 
+// Função para diminuir a quantidade de uma cartela específica
+function diminuirCartela(index) {
+    const cartela = cartelas[index];
+    if (cartela.quantidade > 0) {
+        cartela.quantidade -= 1; // Diminui a quantidade
+        document.getElementById('message').textContent = `Quantidade de ${cartela.cor} diminuída com sucesso!`;
+    } else {
+        document.getElementById('message').textContent = `Não há ${cartela.cor} para diminuir.`;
+    }
+    gerarResumo(); // Atualiza o resumo após a diminuição
+}
+
+// Função para remover uma cartela
+function removerCartela(index) {
+    cartelas.splice(index, 1); // Remove a cartela do array
+    document.getElementById('message').textContent = 'Cartela removida com sucesso!';
+    gerarResumo(); // Atualiza o resumo após a remoção
+}
+
+// Função para adicionar engradado de águas
+function adicionarEngradado() {
+    totalEngradados += 1; // Aumenta a quantidade de engradados
+    document.getElementById('message').textContent = 'Engradado de água adicionado com sucesso!';
+    gerarResumo(); // Atualiza o resumo para incluir o total de águas
+}
+
+// Função para diminuir a quantidade de engradados
+function diminuirEngradado() {
+    if (totalEngradados > 0) {
+        totalEngradados -= 1; // Diminui a quantidade de engradados
+        document.getElementById('message').textContent = 'Engradado de água diminuído com sucesso!';
+    } else {
+        document.getElementById('message').textContent = 'Não há engradados para diminuir.';
+    }
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para remover todos os engradados
+function removerEngradado() {
+    totalEngradados = 0; // Reseta a quantidade de engradados
+    document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
+    gerarResumo(); // Atualiza o resumo
+}
+
 // Função para adicionar cordão de girasol
 function adicionarCordaoGirasol() {
     const quantidade = 1;
 
     const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
-    if (cartelaExistente) {
-        cartelaExistente.quantidade += quantidade;
+        if (cartelaExistente) {
+        cartelaExistente.quantidade += quantidade; // Aumenta a quantidade se já existir
     } else {
-        cartelas.push({ cor: 'Girasol', quantidade });
+        cartelas.push({ cor: 'Girasol', quantidade }); // Adiciona uma nova cartela se não existir
     }
 
     document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
-    gerarResumo();
+    gerarResumo(); // Atualiza o resumo
 }
 
 // Função para diminuir a quantidade de cordão de girasol
