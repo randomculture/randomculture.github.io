@@ -204,18 +204,22 @@ function adicionarCordaoGirasol() {
 }
 
 
-        // Função para remover cordão de girasol
-        function removerCordaoGirasol() {
-            const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
-            if (cartelaExistente) {
-                const index = cartelas.indexOf(cartelaExistente);
-                cartelas.splice(index,                1); // Remove a cartela do array
-                document.getElementById('message').textContent = 'Cordão de girasol removido com sucesso!';
-            } else {
-                document.getElementById('message').textContent = 'Nenhum cordão de girasol para remover.';
-            }
-            gerarResumo(); // Atualiza o resumo após a remoção
+// Função para diminuir a quantidade de cordão de girasol
+function diminuirCordaoGirasol() {
+    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolExistente) {
+        if (girasolExistente.quantidade > 0) {
+            girasolExistente.quantidade -= 1; // Diminui a quantidade
+            document.getElementById('message').textContent = 'Quantidade de cordão de girasol diminuída com sucesso!';
+        } else {
+            document.getElementById('message').textContent = 'Não há cordão de girasol para diminuir.';
         }
+    } else {
+        document.getElementById('message').textContent = 'Nenhum cordão de girasol encontrado.';
+    }
+    gerarResumo(); // Atualiza o resumo após a diminuição
+}
+
 
         // Função para enviar o resumo via WhatsApp
         function enviarWhatsApp() {
