@@ -129,26 +129,31 @@
 // Função para gerar o resumo
 function gerarResumo() {
     let resumo = 'Pulseiras:\n';
+    let girasolQuantidade = 0; // Variável para armazenar a quantidade de girasol
+
     cartelas.forEach((cartela, index) => {
-        resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
-        resumo += `<button class="decrease-button" onclick="diminuirCartela(${index})">Diminuir</button>\n`; // Botão para diminuir
-        resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
+        if (cartela.cor === 'Girasol') {
+            girasolQuantidade += cartela.quantidade; // Soma a quantidade de girasol
+        } else {
+            resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
+            resumo += `<button class="decrease-button" onclick="diminuirCartela(${index})">Diminuir</button>\n`;
+            resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
+        }
     });
-    
+
+    // Adiciona a entrada do cordão de girasol se houver quantidade
+    if (girasolQuantidade > 0) {
+        resumo += `\nCordão de Girasol, Quantidade: ${girasolQuantidade} `;
+        resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`;
+    }
+
     resumo += `\nEngradados de água: ${totalEngradados} `;
     resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
     resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
 
     const totalAguas = totalEngradados * 12;
     resumo += `Total de Águas: ${totalAguas}\n`;
-
-    // Adicionando lógica para o cordão de girasol
-    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
-    if (girasolExistente) {
-        resumo += `\nCordão de Girasol, Quantidade: ${girasolExistente.quantidade} `;
-        resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
-        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`;
-    }
 
     document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
 }
@@ -189,6 +194,52 @@ function diminuirEngradado() {
     }
     gerarResumo(); // Atualiza o resumo
 }
+
+// Função para remover todos os engradados
+function removerEngradado() {
+    totalEngradados = 0; // Reseta a quantidade de engradados
+    document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para adicionar cordão de girasol
+function adicionarCordaoGirasol() {
+    const quantidade = 1;
+
+    const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (cartelaExistente) {
+        cartelaExistente.quantidade += quantidade; // Aumenta a quantidade se já existir
+    } else {
+        cartelas.push({ cor: 'Girasol', quantidade }); // Adiciona uma nova cartela se não existir
+    }
+
+    document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para diminuir a quantidade de cordão de girasol
+function diminuirCordaoGirasol() {
+    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolExistente) {
+        if (girasolExistente.quantidade > 0) {
+            girasolExistente.quantidade -= 1; // Diminui a quantidade
+            document.getElementById('message').textContent = 'Quantidade de cordão de girasol diminuída com sucesso!';
+        } else {
+            document.getElementById('message').textContent = 'Não há cordão de girasol para diminuir.';
+        }
+    } else {
+        document.getElementById('message').textContent = 'Nenhum cordão de girasol encontrado.';
+    }
+    gerarResumo(); // Atualiza o resumo após a diminuição
+}
+
+// Função para remover todos os cordões de girasol
+function removerCordaoGirasol() {
+    cartelas = cartelas.filter(cartela => cartela.cor !== 'Girasol'); // Remove todos os girasóis
+    document.getElementById('message').textContent = 'Todos os cordões de girasol removidos!';
+    gerarResumo(); // Atualiza o resumo
+}
+
 
 // Função para remover todos os engradados
 function removerEngradado() {
