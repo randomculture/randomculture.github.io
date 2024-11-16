@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    
-
-        
     <!-- Favicon para navegadores de desktop -->
-<link rel="icon" href="logo.ico" type="image/ico">
-<!-- Favicon para dispositivos móveis -->
-<link rel="apple-touch-icon" sizes="192x192" href="logo.ico">
-<link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
-<link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
-
-<!-- Configurações para dispositivos Android -->
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="Pulseiras e águas">
-<meta name="theme-color" content="#ffffff"> 
-            <!-- Cor da barra de status -->
-    
+    <link rel="icon" href="logo.ico" type="image/ico">
+    <!-- Favicon para dispositivos móveis -->
+    <link rel="apple-touch-icon" sizes="192x192" href="logo.ico">
+    <link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Pulseiras e águas">
+    <meta name="theme-color" content="#ffffff"> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
@@ -32,9 +24,9 @@
         h1, h2 {
             text-align: center;
         }
-        p{
-        text-align: center;
-         }
+        p {
+            text-align: center;
+        }
         .container {
             max-width: 400px;
             margin: auto;
@@ -86,35 +78,37 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <div style="text-align: center;">
-        <img src="logo.png" alt="Logo da Minha Página" style="width: 45%;" />
+    <div class="container">
+        <div style="text-align: center;">
+            <img src="logo.png" alt="Logo da Minha Página" style="width: 45%;" />
+        </div>
+        <h1>Pulseiras e águas</h1>
+        
+        <label for="cor">Cor da Pulseira:</label>
+        <div class="color-buttons">
+            <button class="color-button" style="background-color: red;" onclick="selectColor('Vermelha')"></button>
+            <button class="color-button" style="background-color: green;" onclick="selectColor('Verde')"></button>
+            <button class="color-button" style="background-color: gold;" onclick="selectColor('Dourada')"></button>
+            <button class="color-button" style="background-color: purple;" onclick="selectColor('Roxa')"></button>
+            <button class="color-button" style="background-color: blue;" onclick="selectColor('Azul')"></button>
+            <button class="color-button" style="background-color: silver;" onclick="selectColor('Prata')"></button>
+            <button class="color-button" style="background-color: pink;" onclick="selectColor('Rosa')"></button>
+        </div>
+
+        <!-- Ícone de Engradado de Água -->
+        <img src="aguas.ico" alt="Engradado de Água" class="engradado-icon" onclick="adicionarEngradado()" style="cursor: pointer; width: 100px; height: 100px; display: block; margin: 20px auto;">
+
+        <!-- Ícone de Cordão de Girasol -->
+        <div style="text-align: center;">
+            <img src="girasol.ico" alt="Cordão de Girasol" class="girasol-icon" onclick="adicionarCordaoGirasol()" style="cursor: pointer;             width: 100px; height: 100px; display: inline-block; margin: 20px;">
+            <button class="remove-button" onclick="removerCordaoGirasol()">Remover Cordão de Girasol</button>
+        </div>
+
+        <h2>Resumo</h2>
+        <pre id="resumo"></pre>
+        <div class="message" id="message"></div>
+        <button class="engradado-button" id="whatsappButton" style="background-color: green; color: white;" onclick="enviarWhatsApp()">Enviar Resumo via WhatsApp</button>
     </div>
-    <h1>Pulseiras e águas</h1>
-    
-    <label for="cor">Cor da Pulseira:</label>
-    <div class="color-buttons">
-        <button class="color-button" style="background-color: red;" onclick="selectColor('Vermelha')"></button>
-        <button class="color-button" style="background-color: green;" onclick="selectColor('Verde')"></button>
-        <button class="color-button" style="background-color: gold;" onclick="selectColor('Dourada')"></button>
-        <button class="color-button" style="background-color: purple;" onclick="selectColor('Roxa')"></button>
-        <button class="color-button" style="background-color: blue;" onclick="selectColor('Azul')"></button>
-        <button class="color-button" style="background-color: silver;" onclick="selectColor('Prata')"></button>
-        <button class="color-button" style="background-color: pink;" onclick="selectColor('Rosa')"></button>
-    </div>
-
-    <!-- Ícone de Engradado de Água com tamanho dobrado -->
-    <img src="aguas.ico" alt="Engradado de Água" class="engradado-icon" onclick="adicionarEngradado()" style="cursor: pointer; width: 100px; height: 100px; display: block; margin: 20px auto;">
-
-    <!-- Ícone de Cordão de Girasol -->
-    <img src="girasol.ico" alt="Cordão de Girasol" class="girasol-icon" onclick="adicionarCordaoGirasol()" style="cursor: pointer; width: 100px; height: 100px; display: block; margin: 20px auto;">
-
-    <h2>Resumo</h2>
-    <pre id="resumo"></pre>
-    <div class="message" id="message"></div>
-    <button class="engradado-button" id="whatsappButton" style="background-color: green; color: white;" onclick="enviarWhatsApp()">Enviar Resumo via WhatsApp</button>
-</div>
-
 
     <script>
         const cartelas = [];
@@ -143,7 +137,7 @@
                 resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
             });
             resumo += `\nEngradados de água: ${totalEngradados} `;
-                        resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
+            resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
             resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
 
             const totalAguas = totalEngradados * 12;
@@ -184,6 +178,34 @@
             gerarResumo(); // Atualiza o resumo
         }
 
+        // Função para adicionar cordão de girasol
+        function adicionarCordaoGirasol() {
+            const quantidade = 1;
+
+            const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+            if (cartelaExistente) {
+                cartelaExistente.quantidade += quantidade;
+            } else {
+                cartelas.push({ cor: 'Girasol', quantidade });
+            }
+
+            document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
+            gerarResumo();
+        }
+
+        // Função para remover cordão de girasol
+        function removerCordaoGirasol() {
+            const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+            if (cartelaExistente) {
+                const index = cartelas.indexOf(cartelaExistente);
+                cartelas.splice(index,                1); // Remove a cartela do array
+                document.getElementById('message').textContent = 'Cordão de girasol removido com sucesso!';
+            } else {
+                document.getElementById('message').textContent = 'Nenhum cordão de girasol para remover.';
+            }
+            gerarResumo(); // Atualiza o resumo após a remoção
+        }
+
         // Função para enviar o resumo via WhatsApp
         function enviarWhatsApp() {
             let mensagem = 'Resumo:\n';
@@ -195,7 +217,7 @@
 
             // Codifica a mensagem para URL
             const mensagemCodificada = encodeURIComponent(mensagem);
-            const numeroWhatsApp = '5521964895651';
+            const numeroWhatsApp = '5521964895651'; // Substitua pelo número desejado
             const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
 
             // Abre o WhatsApp com a mensagem
@@ -203,8 +225,8 @@
         }
     </script>
     <p>By Nellu</p>
-        
-        <script>
+    
+    <script>
         window.addEventListener('beforeinstallprompt', (event) => {
             event.preventDefault();
             const installButton = document.createElement('button');
@@ -242,3 +264,4 @@
     </script>  
 </body>
 </html>
+
