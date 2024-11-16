@@ -130,7 +130,7 @@
 function gerarResumo() {
     let resumo = 'Pulseiras:\n';
     cartelas.forEach((cartela, index) => {
-        resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `; // Mostrando a quantidade
+        resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
         resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
     });
     
@@ -144,46 +144,13 @@ function gerarResumo() {
     // Adicionando lógica para o cordão de girasol
     const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
     if (girasolExistente) {
-        resumo += `\nCordão de Girasol, Quantidade: ${girasolExistente.quantidade} `; // Mostrando a quantidade
+        resumo += `\nCordão de Girasol, Quantidade: ${girasolExistente.quantidade} `;
         resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
-        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`; // Alterado para "Remover Todos"
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`;
     }
 
     document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
 }
-
-
-        // Função para remover uma cartela
-        function removerCartela(index) {
-            cartelas.splice(index, 1); // Remove a cartela do array
-            document.getElementById('message').textContent = 'Cartela removida com sucesso!';
-            gerarResumo(); // Atualiza o resumo após a remoção
-        }
-
-        // Função para adicionar engradado de águas
-        function adicionarEngradado() {
-            totalEngradados += 1; // Aumenta a quantidade de engradados
-            document.getElementById('message').textContent = 'Engradado de água adicionado com sucesso!';
-            gerarResumo(); // Atualiza o resumo para incluir o total de águas
-        }
-
-        // Função para diminuir a quantidade de engradados
-        function diminuirEngradado() {
-            if (totalEngradados > 0) {
-                totalEngradados -= 1; // Diminui a quantidade de engradados
-                document.getElementById('message').textContent = 'Engradado de água diminuído com sucesso!';
-            } else {
-                document.getElementById('message').textContent = 'Não há engradados para diminuir.';
-            }
-            gerarResumo(); // Atualiza o resumo
-        }
-
-        // Função para remover todos os engradados
-        function removerEngradado() {
-            totalEngradados = 0; // Reseta a quantidade de engradados
-            document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
-            gerarResumo(); // Atualiza o resumo
-        }
 
 // Função para adicionar cordão de girasol
 function adicionarCordaoGirasol() {
@@ -200,7 +167,6 @@ function adicionarCordaoGirasol() {
     gerarResumo();
 }
 
-
 // Função para diminuir a quantidade de cordão de girasol
 function diminuirCordaoGirasol() {
     const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
@@ -216,7 +182,6 @@ function diminuirCordaoGirasol() {
     }
     gerarResumo(); // Atualiza o resumo após a diminuição
 }
-
 
         // Função para enviar o resumo via WhatsApp
         function enviarWhatsApp() {
