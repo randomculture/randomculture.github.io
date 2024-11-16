@@ -133,7 +133,7 @@
 function gerarResumo() {
     let resumo = 'Pulseiras:\n';
     cartelas.forEach((cartela, index) => {
-        resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
+        resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `; // Mostrando a quantidade
         resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
     });
     
@@ -147,9 +147,9 @@ function gerarResumo() {
     // Adicionando lógica para o cordão de girasol
     const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
     if (girasolExistente) {
-        resumo += `\nCordão de Girasol, Quantidade: ${girasolExistente.quantidade} `;
+        resumo += `\nCordão de Girasol, Quantidade: ${girasolExistente.quantidade} `; // Mostrando a quantidade
         resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
-        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover</button>\n`;
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`; // Alterado para "Remover Todos"
     }
 
     document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
