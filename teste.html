@@ -129,7 +129,7 @@
             gerarResumo();
         }
 
-        // Função para gerar o resumo
+// Função para gerar o resumo
 function gerarResumo() {
     let resumo = 'Pulseiras:\n';
     cartelas.forEach((cartela, index) => {
@@ -154,6 +154,7 @@ function gerarResumo() {
 
     document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
 }
+
 
         // Função para remover uma cartela
         function removerCartela(index) {
@@ -187,20 +188,21 @@ function gerarResumo() {
             gerarResumo(); // Atualiza o resumo
         }
 
-        // Função para adicionar cordão de girasol
-        function adicionarCordaoGirasol() {
-            const quantidade = 1;
+// Função para adicionar cordão de girasol
+function adicionarCordaoGirasol() {
+    const quantidade = 1;
 
-            const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
-            if (cartelaExistente) {
-                cartelaExistente.quantidade += quantidade;
-            } else {
-                cartelas.push({ cor: 'Girasol', quantidade });
-            }
+    const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (cartelaExistente) {
+        cartelaExistente.quantidade += quantidade;
+    } else {
+        cartelas.push({ cor: 'Girasol', quantidade });
+    }
 
-            document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
-            gerarResumo();
-        }
+    document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
+    gerarResumo();
+}
+
 
         // Função para remover cordão de girasol
         function removerCordaoGirasol() {
