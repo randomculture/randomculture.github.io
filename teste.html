@@ -101,7 +101,7 @@
         <!-- Ícone de Cordão de Girasol -->
         <div style="text-align: center;">
             <img src="girasol.ico" alt="Cordão de Girasol" class="girasol-icon" onclick="adicionarCordaoGirasol()" style="cursor: pointer;             width: 100px; height: 100px; display: inline-block; margin: 20px;">
-            <button class="remove-button" onclick="removerCordaoGirasol()">Remover Cordão de Girasol</button>
+            
         </div>
 
         <h2>Resumo</h2>
@@ -130,21 +130,30 @@
         }
 
         // Função para gerar o resumo
-        function gerarResumo() {
-            let resumo = 'Pulseiras:\n';
-            cartelas.forEach((cartela, index) => {
-                resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
-                resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
-            });
-            resumo += `\nEngradados de água: ${totalEngradados} `;
-            resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
-            resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
+function gerarResumo() {
+    let resumo = 'Pulseiras:\n';
+    cartelas.forEach((cartela, index) => {
+        resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
+        resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
+    });
+    
+    resumo += `\nEngradados de água: ${totalEngradados} `;
+    resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
+    resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
 
-            const totalAguas = totalEngradados * 12;
-            resumo += `Total de Águas: ${totalAguas}`;
+    const totalAguas = totalEngradados * 12;
+    resumo += `Total de Águas: ${totalAguas}\n`;
 
-            document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
-        }
+    // Adicionando lógica para o cordão de girasol
+    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolExistente) {
+        resumo += `\nCordão de Girasol, Quantidade: ${girasolExistente.quantidade} `;
+        resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover</button>\n`;
+    }
+
+    document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
+}
 
         // Função para remover uma cartela
         function removerCartela(index) {
