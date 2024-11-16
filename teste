@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    
+
+        
+    <!-- Favicon para navegadores de desktop -->
+<link rel="icon" href="logo.ico" type="image/ico">
+<!-- Favicon para dispositivos móveis -->
+<link rel="apple-touch-icon" sizes="192x192" href="logo.ico">
+<link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
+<link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
+
+<!-- Configurações para dispositivos Android -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Pulseiras e águas">
+<meta name="theme-color" content="#ffffff"> 
+            <!-- Cor da barra de status -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <title>Controle de pulseiras e águas</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        p{
+        text-align: center;
+         }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .color-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .color-button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .message {
+            color: red;
+            text-align: center;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .remove-button, .decrease-button {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .engradado-button {
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div style="text-align: center;">
+        <img src="logo.png" alt="Logo da Minha Página" style="width: 45%;" />
+    </div>
+    <h1>Pulseiras e águas</h1>
+    
+    <label for="cor">Cor da Pulseira:</label>
+    <div class="color-buttons">
+        <button class="color-button" style="background-color: red;" onclick="selectColor('Vermelha')"></button>
+        <button class="color-button" style="background-color: green;" onclick="selectColor('Verde')"></button>
+        <button class="color-button" style="background-color: gold;" onclick="selectColor('Dourada')"></button>
+        <button class="color-button" style="background-color: purple;" onclick="selectColor('Roxa')"></button>
+        <button class="color-button" style="background-color: blue;" onclick="selectColor('Azul')"></button>
+        <button class="color-button" style="background-color: silver;" onclick="selectColor('Prata')"></button>
+        <button class="color-button" style="background-color: pink;" onclick="selectColor('Rosa')"></button>
+    </div>
+
+    <!-- Ícone de Engradado de Água -->
+    <img src="aguas.ico" alt="Engradado de Água" class="engradado-icon" onclick="adicionarEngradado()" style="cursor: pointer; width: 50px; height: 50px; display: block; margin: 20px auto;">
+
+    <h2>Resumo</h2>
+    <pre id="resumo"></pre>
+    <div class="message" id="message"></div>
+    <button class="engradado-button" id="whatsappButton" style="background-color: green; color: white;" onclick="enviarWhatsApp()">Enviar Resumo via WhatsApp</button>
+</div>
+
+    <script>
+        const cartelas = [];
+        let totalEngradados = 0;
+
+        // Função para selecionar a cor
+        function selectColor(cor) {
+            const quantidade = 1;
+
+            const cartelaExistente = cartelas.find(cartela => cartela.cor === cor);
+            if (cartelaExistente) {
+                cartelaExistente.quantidade += quantidade;
+            } else {
+                cartelas.push({ cor, quantidade });
+            }
+
+            document.getElementById('message').textContent = `Cartela ${cor} adicionada com sucesso!`;
+            gerarResumo();
+        }
+
+        // Função para gerar o resumo
+        function gerarResumo() {
+            let resumo = 'Pulseiras:\n';
+            cartelas.forEach((cartela, index) => {
+                resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
+                resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
+            });
+            resumo += `\nEngradados de água: ${totalEngradados} `;
+                        resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
+            resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
+
+            const totalAguas = totalEngradados * 12;
+            resumo += `Total de Águas: ${totalAguas}`;
+
+            document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
+        }
+
+        // Função para remover uma cartela
+        function removerCartela(index) {
+            cartelas.splice(index, 1); // Remove a cartela do array
+            document.getElementById('message').textContent = 'Cartela removida com sucesso!';
+            gerarResumo(); // Atualiza o resumo após a remoção
+        }
+
+        // Função para adicionar engradado de águas
+        function adicionarEngradado() {
+            totalEngradados += 1; // Aumenta a quantidade de engradados
+            document.getElementById('message').textContent = 'Engradado de água adicionado com sucesso!';
+            gerarResumo(); // Atualiza o resumo para incluir o total de águas
+        }
+
+        // Função para diminuir a quantidade de engradados
+        function diminuirEngradado() {
+            if (totalEngradados > 0) {
+                totalEngradados -= 1; // Diminui a quantidade de engradados
+                document.getElementById('message').textContent = 'Engradado de água diminuído com sucesso!';
+            } else {
+                document.getElementById('message').textContent = 'Não há engradados para diminuir.';
+            }
+            gerarResumo(); // Atualiza o resumo
+        }
+
+        // Função para remover todos os engradados
+        function removerEngradado() {
+            totalEngradados = 0; // Reseta a quantidade de engradados
+            document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
+            gerarResumo(); // Atualiza o resumo
+        }
+
+        // Função para enviar o resumo via WhatsApp
+        function enviarWhatsApp() {
+            let mensagem = 'Resumo:\n';
+            cartelas.forEach(cartela => {
+                mensagem += `${cartela.quantidade}: Pulseira, Cor: ${cartela.cor} \n`;
+            });
+            mensagem += `${totalEngradados}: Engradado de água\n`;
+            mensagem += `Total de Águas: ${totalEngradados * 12}\n`;
+
+            // Codifica a mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            const numeroWhatsApp = '5521964895651';
+            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
+
+            // Abre o WhatsApp com a mensagem
+            window.open(urlWhatsApp, '_blank');
+        }
+    </script>
+    <p>By Nellu</p>
+        
+        <script>
+        window.addEventListener('beforeinstallprompt', (event) => {
+            event.preventDefault();
+            const installButton = document.createElement('button');
+            installButton.textContent = 'Instalar';
+            installButton.style.background = '#4CAF50';
+            installButton.style.color = '#fff';
+            installButton.style.padding = '11px';
+            installButton.style.border = 'none';
+            installButton.style.borderRadius = '50%'; // torna o botão redondo
+            installButton.style.cursor = 'pointer';
+            installButton.style.display = 'flex';
+            installButton.style.justifyContent = 'center';
+            installButton.style.alignItems = 'center';
+            installButton.style.width = '55px'; // define o tamanho do botão
+            installButton.style.height = '55px'; // define o tamanho do botão
+            installButton.style.margin = '10px';
+            installButton.style.position = 'fixed'; // evita que o botão sobreponha texto
+            installButton.style.top = '10px'; // posiciona o botão no topo da tela
+            installButton.style.left = '10px'; // posiciona o botão no canto esquerdo da tela
+            installButton.style.fontWeight = 'bold'; // torna o texto em negrito
+            installButton.style.fontSize = '13.2px'; // ajusta o tamanho do texto
+
+            installButton.addEventListener('click', () => {
+                event.prompt();
+                event.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('Usuário aceitou a instalação da aplicação');
+                    } else {
+                        console.log('Usuário recusou a instalação da aplicação');
+                    }
+                });
+            });
+            document.body.appendChild(installButton);
+        });
+    </script>  
+</body>
+</html>
