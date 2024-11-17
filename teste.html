@@ -19,7 +19,7 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             padding: 0;
-            background-color: #fd7e14;
+            background-color: #198754;
         }
         h1, h2 {
             text-align: center;
@@ -135,7 +135,7 @@ function gerarResumo() {
         if (cartela.cor === 'Girasol') {
             girasolQuantidade += cartela.quantidade; // Soma a quantidade de girasol
         } else {
-            resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
+            resumo += `${cartela.cor}, : ${cartela.quantidade} `;
             resumo += `<button class="decrease-button" onclick="diminuirCartela(${index})">Diminuir</button>\n`;
             resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
         }
