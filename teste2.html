@@ -145,7 +145,7 @@ function gerarResumo() {
     if (girasolQuantidade > 0) {
         resumo += `\nCordão de Girasol: ${girasolQuantidade} `;
         resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
-        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover</button>\n`; // Chama a função correta
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`; // Chama a função correta
     }
 
     resumo += `\nEngradados de água: ${totalEngradados} `;
@@ -157,7 +157,6 @@ function gerarResumo() {
 
     document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
 }
-
 
 // Função para diminuir a quantidade de uma cartela específica
 function diminuirCartela(index) {
