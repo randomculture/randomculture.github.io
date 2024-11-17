@@ -234,22 +234,12 @@ function diminuirCordaoGirasol() {
     gerarResumo(); // Atualiza o resumo após a diminuição
 }
 
-// Função para remover uma unidade do cordão de girasol
+// Função para remover todos os cordões de girasol
 function removerCordaoGirasol() {
-    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
-    if (girasolExistente) {
-        if (girasolExistente.quantidade > 0) {
-            girasolExistente.quantidade -= 1; // Diminui a quantidade
-            document.getElementById('message').textContent = 'Uma unidade do cordão de girasol removida com sucesso!';
-        } else {
-            document.getElementById('message').textContent = 'Não há cordão de girasol para remover.';
-        }
-    } else {
-        document.getElementById('message').textContent = 'Nenhum cordão de girasol encontrado.';
-    }
+    cartelas = cartelas.filter(cartela => cartela.cor !== 'Girasol'); // Remove todos os girasóis
+    document.getElementById('message').textContent = 'Todos os cordões de girasol removidos!';
     gerarResumo(); // Atualiza o resumo após a remoção
 }
-
 
 
 // Função para remover todos os engradados
