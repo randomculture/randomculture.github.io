@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="nytapp-vi-homepage" xmlns:og="http://opengraphprotocol.org/schema/">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Randomculture</title>
+    <title>Posts - Randomculture</title>
     <link rel="stylesheet" href="styles.css">
     <script src="loadContent.js" defer></script>
 </head>
@@ -16,46 +16,43 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header').innerHTML = data;
-                return fetch('menu.html');
             })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('menu').innerHTML = data;
-            })
-            .catch(error => console.error('Error loading header or menu:', error));
+            .catch(error => console.error('Error loading header:', error));
     </script>
 
     <main>
-    <h1>Blog Posts</h1>
+        <h1>Blog Posts</h1>
 
-    <div class="post-preview">
-        <h2><a class="post-title" href="costao_de_itacoatiara.html">Costão de Itacoatiara</a></h2>
-        <p class="post-excerpt">Join me on an exhilarating journey to the stunning Costão de Itacoatiara in Niterói. This impressive hiking destination is known for its breathtaking landscapes and serene ambiance. Explore the wonders of this trail and appreciate the captivating natural beauty along the way!</p>
-    </div>
-    <div class="post-preview">
-        <h2><a class="post-title" href="campo_de_sao_bento.html">Campo de São Bento: Niterói's Cultural Gem</a></h2>
-        <p class="post-excerpt">Campo de São Bento, established in the 19th century, began as a space for leisure and community gatherings. Originally an agricultural area, it has transformed into a vibrant urban park, reflecting the evolution of Niterói and its relationship with nature.</p>
-    </div>
-    <div class="post-preview">
-        <h2><a class="post-title" href="antarctic_desert.html">Exploring the Antarctic Desert</a></h2>
-        <p class="post-excerpt">The Antarctic Desert is the largest desert in the world, known for its extreme conditions and unique wildlife. Discover the beauty and challenges of this icy landscape!</p>
-    </div>
-    <div class="post-preview">
-        <h2><a class="post-title" href="paqueta.html">Discovering Paquetá Island</a></h2>
-        <p class="post-excerpt">Paquetá Island is a hidden gem in Guanabara Bay, known for its charming streets and beautiful beaches. Join me as we explore this tranquil paradise!</p>
-    </div>
-    <div class="post-preview">
-        <h2><a class="post-title" href="paqueta2.html">Paquetá: A Day in Paradise</a></h2>
-        <p class="post-excerpt">Experience a perfect day on Paquetá Island, filled with stunning views, delicious food, and the warm hospitality of its residents.</p>
-    </div>
         <div class="post-preview">
-    <h2><a class="post-title" href="plazashopping.html">Exploring Plaza Shopping</a></h2>
-    <p class="post-excerpt">Plaza Shopping offers a unique blend of shopping, dining, and entertainment. Discover the vibrant atmosphere and the variety of stores that cater to all tastes!</p>
-</div>
-<div class="post-preview">
-    <h2><a class="post-title" href="ilhadaboaviagem.html">A Journey to Ilha da Boa Viagem</a></h2>
-    <p class="post-excerpt">Ilha da Boa Viagem is a picturesque island known for its stunning beaches and rich history. Join me as we uncover the beauty and culture of this enchanting destination!</p>
-</div>
+            <h2><a class="post-title" href="antarctic_desert.html">Exploring the Antarctic Desert</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="campo_de_sao_bento.html">Campo de São Bento: Niterói's Cultural Gem</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="cantareira.html">Discovering Cantareira</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="costao_de_itacoatiara.html">Costão de Itacoatiara</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="enem.html">Understanding ENEM</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="ilhadaboaviagem.html">A Journey to Ilha da Boa Viagem</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="joelho-x-italiano.html">Joelho x Italiano</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="paqueta.html">Discovering Paquetá Island</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="paqueta2.html">Paquetá: A Day in Paradise</a></h2>
+        </div>
+        <div class="post-preview">
+            <h2><a class="post-title" href="plazashopping.html">Exploring Plaza Shopping</a></h2>
+        </div>
     </main>
 
     <!-- Load Footer -->
