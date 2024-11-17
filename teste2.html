@@ -145,7 +145,7 @@ function gerarResumo() {
     if (girasolQuantidade > 0) {
         resumo += `\nCordão de Girasol: ${girasolQuantidade} `;
         resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
-        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`; // Chama a função correta
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover</button>\n`; // Chama a função correta
     }
 
     resumo += `\nEngradados de água: ${totalEngradados} `;
@@ -234,11 +234,20 @@ function diminuirCordaoGirasol() {
     gerarResumo(); // Atualiza o resumo após a diminuição
 }
 
-// Função para remover todos os cordões de girasol
+// Função para remover uma unidade do cordão de girasol
 function removerCordaoGirasol() {
-    cartelas = cartelas.filter(cartela => cartela.cor !== 'Girasol'); // Remove todos os girasóis
-    document.getElementById('message').textContent = 'Todos os cordões de girasol removidos!';
-    gerarResumo(); // Atualiza o resumo
+    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolExistente) {
+        if (girasolExistente.quantidade > 0) {
+            girasolExistente.quantidade -= 1; // Diminui a quantidade
+            document.getElementById('message').textContent = 'Uma unidade do cordão de girasol removida com sucesso!';
+        } else {
+            document.getElementById('message').textContent = 'Não há cordão de girasol para remover.';
+        }
+    } else {
+        document.getElementById('message').textContent = 'Nenhum cordão de girasol encontrado.';
+    }
+    gerarResumo(); // Atualiza o resumo após a remoção
 }
 
 
