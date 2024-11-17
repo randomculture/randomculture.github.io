@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    
-  
-
-    
-        
     <!-- Favicon para navegadores de desktop -->
-<link rel="icon" href="logo.ico" type="image/ico">
-<!-- Favicon para dispositivos móveis -->
-<link rel="apple-touch-icon" sizes="192x192" href="logo.ico">
-<link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
-<link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
-
-<!-- Configurações para dispositivos Android -->
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="Pulseiras e águas">
-<meta name="theme-color" content="#ffffff"> 
-            <!-- Cor da barra de status -->
-    
+    <link rel="icon" href="logo.ico" type="image/ico">
+    <!-- Favicon para dispositivos móveis -->
+    <link rel="apple-touch-icon" sizes="192x192" href="logo.ico">
+    <link rel="icon" type="image/ico" sizes="192x192" href="logo.ico">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Pulseiras e águas">
+    <meta name="theme-color" content="#ffffff"> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
@@ -29,19 +19,19 @@
             font-family: Arial, sans-serif;
             margin: 20px;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #198754;
         }
         h1, h2 {
             text-align: center;
         }
-        p{
-        text-align: center;
-         }
+        p {
+            text-align: center;
+        }
         .container {
             max-width: 400px;
             margin: auto;
             padding: 20px;
-            background: white;
+            background: #fd7e14;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
@@ -89,9 +79,9 @@
 </head>
 <body>
     <div class="container">
-            <div style="text-align: center;">
-    <img src="logo.png" alt="Logo da Minha Página" style="width: 45%;" />
-            </div>
+        <div style="text-align: center;">
+            <img src="logo.png" alt="Logo da Minha Página" style="width: 45%;" />
+        </div>
         <h1>Pulseiras e águas</h1>
         
         <label for="cor">Cor da Pulseira:</label>
@@ -105,9 +95,12 @@
             <button class="color-button" style="background-color: pink;" onclick="selectColor('Rosa')"></button>
         </div>
 
-        <button class="engradado-button" onclick="adicionarEngradado()"><strong>Engradado de Água</strong></button>
+<div style="text-align: center; display: flex; justify-content: center; align-items: center;">
+    <img src="aguas.ico" alt="Engradado de Água" class="engradado-icon" onclick="adicionarEngradado()" style="cursor: pointer; width: 100px; height: 100px; margin: 20px;">
+    <img src="girasol.ico" alt="Cordão de Girasol" class="girasol-icon" onclick="adicionarCordaoGirasol()" style="cursor: pointer; width: 100px; height: 100px; margin: 20px;">
+</div>
 
-        
+
         <h2>Resumo</h2>
         <pre id="resumo"></pre>
         <div class="message" id="message"></div>
@@ -133,54 +126,158 @@
             gerarResumo();
         }
 
-        // Função para gerar o resumo
-        function gerarResumo() {
-            let resumo = 'Pulseiras:\n';
-            cartelas.forEach((cartela, index) => {
-                resumo += `${cartela.cor}, Quantidade: ${cartela.quantidade} `;
-                resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
-            });
-            resumo += `\nEngradados de água: ${totalEngradados} `;
-                        resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
-            resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
+// Função para gerar o resumo
+function gerarResumo() {
+    let resumo = 'Pulseiras:\n';
+    let girasolQuantidade = 0; // Variável para armazenar a quantidade de girasol
 
-            const totalAguas = totalEngradados * 12;
-            resumo += `Total de Águas: ${totalAguas}`;
-
-            document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
+    cartelas.forEach((cartela, index) => {
+        if (cartela.cor === 'Girasol') {
+            girasolQuantidade += cartela.quantidade; // Soma a quantidade de girasol
+        } else {
+            resumo += `${cartela.cor}, : ${cartela.quantidade} `;
+            resumo += `<button class="decrease-button" onclick="diminuirCartela(${index})">Diminuir</button>\n`;
+            resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
         }
+    });
 
-        // Função para remover uma cartela
-        function removerCartela(index) {
-            cartelas.splice(index, 1); // Remove a cartela do array
-            document.getElementById('message').textContent = 'Cartela removida com sucesso!';
-            gerarResumo(); // Atualiza o resumo após a remoção
-        }
+    // Adiciona a entrada do cordão de girasol se houver quantidade
+    if (girasolQuantidade > 0) {
+        resumo += `\nCordão de Girasol, : ${girasolQuantidade} `;
+        resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`;
+    }
 
-        // Função para adicionar engradado de águas
-        function adicionarEngradado() {
-            totalEngradados += 1; // Aumenta a quantidade de engradados
-            document.getElementById('message').textContent = 'Engradado de água adicionado com sucesso!';
-            gerarResumo(); // Atualiza o resumo para incluir o total de águas
-        }
+    resumo += `\nEngradados de água: ${totalEngradados} `;
+    resumo += `<button class="decrease-button" onclick="diminuirEngradado()">Diminuir</button>\n`;
+    resumo += `<button class="remove-button" onclick="removerEngradado()">Remover Todos</button>\n`;
 
-        // Função para diminuir a quantidade de engradados
-        function diminuirEngradado() {
-            if (totalEngradados > 0) {
-                totalEngradados -= 1; // Diminui a quantidade de engradados
-                document.getElementById('message').textContent = 'Engradado de água diminuído com sucesso!';
-            } else {
-                document.getElementById('message').textContent = 'Não há engradados para diminuir.';
-            }
-            gerarResumo(); // Atualiza o resumo
-        }
+    const totalAguas = totalEngradados * 12;
+    resumo += `Total de Águas: ${totalAguas}\n`;
 
-        // Função para remover todos os engradados
-        function removerEngradado() {
-            totalEngradados = 0; // Reseta a quantidade de engradados
-            document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
-            gerarResumo(); // Atualiza o resumo
+    document.getElementById('resumo').innerHTML = resumo; // Usar innerHTML para incluir botões
+}
+
+// Função para diminuir a quantidade de uma cartela específica
+function diminuirCartela(index) {
+    const cartela = cartelas[index];
+    if (cartela.quantidade > 0) {
+        cartela.quantidade -= 1; // Diminui a quantidade
+        document.getElementById('message').textContent = `Quantidade de ${cartela.cor} diminuída com sucesso!`;
+    } else {
+        document.getElementById('message').textContent = `Não há ${cartela.cor} para diminuir.`;
+    }
+    gerarResumo(); // Atualiza o resumo após a diminuição
+}
+
+// Função para remover uma cartela
+function removerCartela(index) {
+    cartelas.splice(index, 1); // Remove a cartela do array
+    document.getElementById('message').textContent = 'Cartela removida com sucesso!';
+    gerarResumo(); // Atualiza o resumo após a remoção
+}
+
+// Função para adicionar engradado de águas
+function adicionarEngradado() {
+    totalEngradados += 1; // Aumenta a quantidade de engradados
+    document.getElementById('message').textContent = 'Engradado de água adicionado com sucesso!';
+    gerarResumo(); // Atualiza o resumo para incluir o total de águas
+}
+
+// Função para diminuir a quantidade de engradados
+function diminuirEngradado() {
+    if (totalEngradados > 0) {
+        totalEngradados -= 1; // Diminui a quantidade de engradados
+        document.getElementById('message').textContent = 'Engradado de água diminuído com sucesso!';
+    } else {
+        document.getElementById('message').textContent = 'Não há engradados para diminuir.';
+    }
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para remover todos os engradados
+function removerEngradado() {
+    totalEngradados = 0; // Reseta a quantidade de engradados
+    document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para adicionar cordão de girasol
+function adicionarCordaoGirasol() {
+    const quantidade = 1;
+
+    const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (cartelaExistente) {
+        cartelaExistente.quantidade += quantidade; // Aumenta a quantidade se já existir
+    } else {
+        cartelas.push({ cor: 'Girasol', quantidade }); // Adiciona uma nova cartela se não existir
+    }
+
+    document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para diminuir a quantidade de cordão de girasol
+function diminuirCordaoGirasol() {
+    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolExistente) {
+        if (girasolExistente.quantidade > 0) {
+            girasolExistente.quantidade -= 1; // Diminui a quantidade
+            document.getElementById('message').textContent = 'Quantidade de cordão de girasol diminuída com sucesso!';
+        } else {
+            document.getElementById('message').textContent = 'Não há cordão de girasol para diminuir.';
         }
+    } else {
+        document.getElementById('message').textContent = 'Nenhum cordão de girasol encontrado.';
+    }
+    gerarResumo(); // Atualiza o resumo após a diminuição
+}
+
+// Função para remover todos os cordões de girasol
+function removerCordaoGirasol() {
+    cartelas = cartelas.filter(cartela => cartela.cor !== 'Girasol'); // Remove todos os girasóis
+    document.getElementById('message').textContent = 'Todos os cordões de girasol removidos!';
+    gerarResumo(); // Atualiza o resumo
+}
+
+
+// Função para remover todos os engradados
+function removerEngradado() {
+    totalEngradados = 0; // Reseta a quantidade de engradados
+    document.getElementById('message').textContent = 'Todos os engradados de água removidos!';
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para adicionar cordão de girasol
+function adicionarCordaoGirasol() {
+    const quantidade = 1;
+
+    const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+        if (cartelaExistente) {
+        cartelaExistente.quantidade += quantidade; // Aumenta a quantidade se já existir
+    } else {
+        cartelas.push({ cor: 'Girasol', quantidade }); // Adiciona uma nova cartela se não existir
+    }
+
+    document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
+    gerarResumo(); // Atualiza o resumo
+}
+
+// Função para diminuir a quantidade de cordão de girasol
+function diminuirCordaoGirasol() {
+    const girasolExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolExistente) {
+        if (girasolExistente.quantidade > 0) {
+            girasolExistente.quantidade -= 1; // Diminui a quantidade
+            document.getElementById('message').textContent = 'Quantidade de cordão de girasol diminuída com sucesso!';
+        } else {
+            document.getElementById('message').textContent = 'Não há cordão de girasol para diminuir.';
+        }
+    } else {
+        document.getElementById('message').textContent = 'Nenhum cordão de girasol encontrado.';
+    }
+    gerarResumo(); // Atualiza o resumo após a diminuição
+}
 
         // Função para enviar o resumo via WhatsApp
         function enviarWhatsApp() {
@@ -193,7 +290,7 @@
 
             // Codifica a mensagem para URL
             const mensagemCodificada = encodeURIComponent(mensagem);
-            const numeroWhatsApp = '5521964895651';
+            const numeroWhatsApp = '5521964895651'; // Substitua pelo número desejado
             const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
 
             // Abre o WhatsApp com a mensagem
@@ -201,8 +298,8 @@
         }
     </script>
     <p>By Nellu</p>
-        
-        <script>
+    
+    <script>
         window.addEventListener('beforeinstallprompt', (event) => {
             event.preventDefault();
             const installButton = document.createElement('button');
