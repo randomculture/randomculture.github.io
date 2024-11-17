@@ -279,23 +279,36 @@ function diminuirCordaoGirasol() {
     gerarResumo(); // Atualiza o resumo após a diminuição
 }
 
-        // Função para enviar o resumo via WhatsApp
-        function enviarWhatsApp() {
-            let mensagem = 'Resumo:\n';
-            cartelas.forEach(cartela => {
-                mensagem += `${cartela.quantidade}: Pulseira, Cor: ${cartela.cor} \n`;
-            });
-            mensagem += `${totalEngradados}: Engradado de água\n`;
-            mensagem += `Total de Águas: ${totalEngradados * 12}\n`;
-
-            // Codifica a mensagem para URL
-            const mensagemCodificada = encodeURIComponent(mensagem);
-            const numeroWhatsApp = '5521964895651'; // Substitua pelo número desejado
-            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
-
-            // Abre o WhatsApp com a mensagem
-            window.open(urlWhatsApp, '_blank');
+       // Função para enviar o resumo via WhatsApp
+function enviarWhatsApp() {
+    let mensagem = 'Resumo:\n';
+    
+    // Adiciona as pulseiras
+    cartelas.forEach(cartela => {
+        if (cartela.cor !== 'Girasol') { // Ignora o girasol aqui
+            mensagem += `${cartela.quantidade}: Pulseira, Cor: ${cartela.cor} \n`;
         }
+    });
+
+    // Adiciona a quantidade de cordão de girasol
+    const girasolQuantidade = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolQuantidade) {
+        mensagem += `${girasolQuantidade.quantidade}: Cordão de Girasol\n`;
+    }
+
+    // Adiciona a quantidade de engradados de água
+    mensagem += `${totalEngradados}: Engradado de água\n`;
+    mensagem += `Total de Águas: ${totalEngradados * 12}\n`;
+
+    // Codifica a mensagem para URL
+    const mensagemCodificada = encodeURIComponent(mensagem);
+    const numeroWhatsApp = '5521964895651'; // Substitua pelo número desejado
+    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
+
+    // Abre o WhatsApp com a mensagem
+    window.open(urlWhatsApp, '_blank');
+}
+
     </script>
     <p>By Nellu</p>
     
