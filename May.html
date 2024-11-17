@@ -129,23 +129,19 @@
 // Função para gerar o resumo
 function gerarResumo() {
     let resumo = 'Pulseiras:\n';
-    let girasolQuantidade = 0; // Variável para armazenar a quantidade de girasol
+    let girasolQuantidade = totalGirasol; // Usa a variável totalGirasol
 
     cartelas.forEach((cartela, index) => {
-        if (cartela.cor === 'Girasol') {
-            girasolQuantidade += cartela.quantidade; // Soma a quantidade de girasol
-        } else {
-            resumo += `${cartela.cor}, : ${cartela.quantidade} `;
-            resumo += `<button class="decrease-button" onclick="diminuirCartela(${index})">Diminuir</button>\n`;
-            resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
-        }
+        resumo += `${cartela.cor}: ${cartela.quantidade} `;
+        resumo += `<button class="decrease-button" onclick="diminuirCartela(${index})">Diminuir</button>\n`;
+        resumo += `<button class="remove-button" onclick="removerCartela(${index})">Remover</button>\n`;
     });
 
     // Adiciona a entrada do cordão de girasol se houver quantidade
     if (girasolQuantidade > 0) {
-        resumo += `\nCordão de Girasol, : ${girasolQuantidade} `;
+        resumo += `\nCordão de Girasol: ${girasolQuantidade} `;
         resumo += `<button class="decrease-button" onclick="diminuirCordaoGirasol()">Diminuir</button>\n`;
-        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`;
+        resumo += `<button class="remove-button" onclick="removerCordaoGirasol()">Remover Todos</button>\n`; // Chama a função correta
     }
 
     resumo += `\nEngradados de água: ${totalEngradados} `;
@@ -202,20 +198,15 @@ function removerEngradado() {
     gerarResumo(); // Atualiza o resumo
 }
 
+let totalGirasol = 0; // Variável para armazenar a quantidade total de cordões de girasol
+
 // Função para adicionar cordão de girasol
 function adicionarCordaoGirasol() {
-    const quantidade = 1;
-
-    const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
-    if (cartelaExistente) {
-        cartelaExistente.quantidade += quantidade; // Aumenta a quantidade se já existir
-    } else {
-        cartelas.push({ cor: 'Girasol', quantidade }); // Adiciona uma nova cartela se não existir
-    }
-
+    totalGirasol += 1; // Aumenta a quantidade total de cordões de girasol
     document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
     gerarResumo(); // Atualiza o resumo
 }
+
 
 // Função para diminuir a quantidade de cordão de girasol
 function diminuirCordaoGirasol() {
@@ -235,9 +226,9 @@ function diminuirCordaoGirasol() {
 
 // Função para remover todos os cordões de girasol
 function removerCordaoGirasol() {
-    cartelas = cartelas.filter(cartela => cartela.cor !== 'Girasol'); // Remove todos os girasóis
+    totalGirasol = 0; // Reseta a quantidade total de cordões de girasol
     document.getElementById('message').textContent = 'Todos os cordões de girasol removidos!';
-    gerarResumo(); // Atualiza o resumo
+    gerarResumo(); // Atualiza o resumo após a remoção
 }
 
 
@@ -253,7 +244,7 @@ function adicionarCordaoGirasol() {
     const quantidade = 1;
 
     const cartelaExistente = cartelas.find(cartela => cartela.cor === 'Girasol');
-        if (cartelaExistente) {
+    if (cartelaExistente) {
         cartelaExistente.quantidade += quantidade; // Aumenta a quantidade se já existir
     } else {
         cartelas.push({ cor: 'Girasol', quantidade }); // Adiciona uma nova cartela se não existir
@@ -262,6 +253,7 @@ function adicionarCordaoGirasol() {
     document.getElementById('message').textContent = 'Cordão de girasol adicionado com sucesso!';
     gerarResumo(); // Atualiza o resumo
 }
+
 
 // Função para diminuir a quantidade de cordão de girasol
 function diminuirCordaoGirasol() {
@@ -279,23 +271,36 @@ function diminuirCordaoGirasol() {
     gerarResumo(); // Atualiza o resumo após a diminuição
 }
 
-        // Função para enviar o resumo via WhatsApp
-        function enviarWhatsApp() {
-            let mensagem = 'Resumo:\n';
-            cartelas.forEach(cartela => {
-                mensagem += `${cartela.quantidade}: Pulseira, Cor: ${cartela.cor} \n`;
-            });
-            mensagem += `${totalEngradados}: Engradado de água\n`;
-            mensagem += `Total de Águas: ${totalEngradados * 12}\n`;
-
-            // Codifica a mensagem para URL
-            const mensagemCodificada = encodeURIComponent(mensagem);
-            const numeroWhatsApp = '5521964895651'; // Substitua pelo número desejado
-            const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
-
-            // Abre o WhatsApp com a mensagem
-            window.open(urlWhatsApp, '_blank');
+       // Função para enviar o resumo via WhatsApp
+function enviarWhatsApp() {
+    let mensagem = 'Resumo:\n';
+    
+    // Adiciona as pulseiras
+    cartelas.forEach(cartela => {
+        if (cartela.cor !== 'Girasol') { // Ignora o girasol aqui
+            mensagem += `${cartela.quantidade}: Pulseira, Cor: ${cartela.cor} \n`;
         }
+    });
+
+    // Adiciona a quantidade de cordão de girasol
+    const girasolQuantidade = cartelas.find(cartela => cartela.cor === 'Girasol');
+    if (girasolQuantidade) {
+        mensagem += `${girasolQuantidade.quantidade}: Cordão de Girasol\n`;
+    }
+
+    // Adiciona a quantidade de engradados de água
+    mensagem += `${totalEngradados}: Engradado de água\n`;
+    mensagem += `Total de Águas: ${totalEngradados * 12}\n`;
+
+    // Codifica a mensagem para URL
+    const mensagemCodificada = encodeURIComponent(mensagem);
+    const numeroWhatsApp = '5521964895651'; // Substitua pelo número desejado
+    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
+
+    // Abre o WhatsApp com a mensagem
+    window.open(urlWhatsApp, '_blank');
+}
+
     </script>
     <p>By Nellu</p>
     
